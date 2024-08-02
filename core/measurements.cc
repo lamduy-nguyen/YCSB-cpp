@@ -50,12 +50,12 @@ std::string BasicMeasurements::GetStatusMsg() {
       continue;
     msg_stream << " [" << kOperationString[op] << ":"
                << " Count=" << cnt
-               << " Max=" << latency_max_[op].load(std::memory_order_relaxed) / 1000.0
-               << " Min=" << latency_min_[op].load(std::memory_order_relaxed) / 1000.0
+               << " Max=" << latency_max_[op].load(std::memory_order_relaxed) / 1000.0 << "us"
+               << " Min=" << latency_min_[op].load(std::memory_order_relaxed) / 1000.0 << "us"
                << " Avg="
                << ((cnt > 0)
                    ? static_cast<double>(latency_sum_[op].load(std::memory_order_relaxed)) / cnt
-                   : 0) / 1000.0
+                   : 0) / 1000.0 << "us"
                << "]";
     total_cnt += cnt;
   }
@@ -86,7 +86,7 @@ std::string HdrHistogramMeasurements::GetStatusMsg() {
   std::ostringstream msg_stream;
   msg_stream.precision(2);
   uint64_t total_cnt = 0;
-  msg_stream << std::fixed << " operations;";
+  msg_stream << std::fixed << " operations;" << std::endl;
   for (int i = 0; i < MAXOPTYPE; i++) {
     Operation op = static_cast<Operation>(i);
     uint64_t cnt = histogram_[op]->total_count;
@@ -94,14 +94,16 @@ std::string HdrHistogramMeasurements::GetStatusMsg() {
       continue;
     msg_stream << " [" << kOperationString[op] << ":"
                << " Count=" << cnt
-               << " Max=" << hdr_max(histogram_[op]) / 1000.0
-               << " Min=" << hdr_min(histogram_[op]) / 1000.0
-               << " Avg=" << hdr_mean(histogram_[op]) / 1000.0
-               << " 90=" << hdr_value_at_percentile(histogram_[op], 90) / 1000.0
-               << " 99=" << hdr_value_at_percentile(histogram_[op], 99) / 1000.0
-               << " 99.9=" << hdr_value_at_percentile(histogram_[op], 99.9) / 1000.0
-               << " 99.99=" << hdr_value_at_percentile(histogram_[op], 99.99) / 1000.0
-               << "]";
+               << " Max=" << hdr_max(histogram_[op]) / 1000.0 << "us"
+               << " Min=" << hdr_min(histogram_[op]) / 1000.0 << "us"
+               << " Avg=" << hdr_mean(histogram_[op]) / 1000.0 << "us"
+               << " 50=" << hdr_value_at_percentile(histogram_[op], 50) / 1000.0 << "us"
+               << " 90=" << hdr_value_at_percentile(histogram_[op], 90) / 1000.0 << "us"
+               << " 99=" << hdr_value_at_percentile(histogram_[op], 99) / 1000.0 << "us"
+               << " 99.9=" << hdr_value_at_percentile(histogram_[op], 99.9) / 1000.0 << "us"
+               << " 99.99=" << hdr_value_at_percentile(histogram_[op], 99.99) / 1000.0 << "us"
+               << "]"
+               << std::endl;
     total_cnt += cnt;
   }
   return std::to_string(total_cnt) + msg_stream.str();

@@ -42,19 +42,19 @@ const string CoreWorkload::TABLENAME_PROPERTY = "table";
 const string CoreWorkload::TABLENAME_DEFAULT = "usertable";
 
 const string CoreWorkload::FIELD_COUNT_PROPERTY = "fieldcount";
-const string CoreWorkload::FIELD_COUNT_DEFAULT = "10";
+const string CoreWorkload::FIELD_COUNT_DEFAULT = "1";
 
 const string CoreWorkload::FIELD_LENGTH_DISTRIBUTION_PROPERTY = "field_len_dist";
 const string CoreWorkload::FIELD_LENGTH_DISTRIBUTION_DEFAULT = "constant";
 
 const string CoreWorkload::FIELD_LENGTH_PROPERTY = "fieldlength";
-const string CoreWorkload::FIELD_LENGTH_DEFAULT = "100";
+const string CoreWorkload::FIELD_LENGTH_DEFAULT = "120";
 
 const string CoreWorkload::READ_ALL_FIELDS_PROPERTY = "readallfields";
 const string CoreWorkload::READ_ALL_FIELDS_DEFAULT = "true";
 
 const string CoreWorkload::WRITE_ALL_FIELDS_PROPERTY = "writeallfields";
-const string CoreWorkload::WRITE_ALL_FIELDS_DEFAULT = "false";
+const string CoreWorkload::WRITE_ALL_FIELDS_DEFAULT = "true";
 
 const string CoreWorkload::READ_PROPORTION_PROPERTY = "readproportion";
 const string CoreWorkload::READ_PROPORTION_DEFAULT = "0.95";
@@ -87,7 +87,7 @@ const string CoreWorkload::SCAN_LENGTH_DISTRIBUTION_PROPERTY = "scanlengthdistri
 const string CoreWorkload::SCAN_LENGTH_DISTRIBUTION_DEFAULT = "uniform";
 
 const string CoreWorkload::INSERT_ORDER_PROPERTY = "insertorder";
-const string CoreWorkload::INSERT_ORDER_DEFAULT = "hashed";
+const string CoreWorkload::INSERT_ORDER_DEFAULT = "ordered";
 
 const string CoreWorkload::INSERT_START_PROPERTY = "insertstart";
 const string CoreWorkload::INSERT_START_DEFAULT = "0";
